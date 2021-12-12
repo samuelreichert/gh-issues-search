@@ -1,0 +1,11 @@
+.loading-container {
+  display: flex;
+  align-items: center;
+}
+
+.loading-title {
+  background: var(--gradient-29);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
