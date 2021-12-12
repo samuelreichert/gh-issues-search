@@ -1,0 +1,11 @@
+.error-container {
+  display: flex;
+  align-items: center;
+}
+
+.error-title {
+  background: var(--gradient-20);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
