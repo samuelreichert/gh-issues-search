@@ -10,13 +10,3 @@
   padding: 24px 36px;
   width: 960px;
 }
-
-.results-item {
-  border-top: 1px solid var(--gray-5);
-  padding: 8px 16px;
-  width: 100%;
-}
-.results-item:last-child {
-  border-bottom: 1px solid var(--gray-5);
-}
-

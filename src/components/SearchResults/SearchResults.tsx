@@ -1,70 +1,14 @@
+import { memo } from 'react';
+import SearchResultsItem from '../SearchResultsItem';
 import './SearchResults.css';
 
-const SearchResults = () => {
-  return (
-    <div className='results-container'>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-      <div className='results-item'>
-        <p>Bug: extra render with the same value for useState and onClick only for React-DOM</p>
-        <p>other relevant issue info</p>
-      </div>
-    </div>
-  );
+type Props = {
+  results?: [];
 };
 
-export default SearchResults;
+const SearchResults = ({ results = [] }: Props) =>
+  <div className='results-container'>
+    {results.map((item, i) => <SearchResultsItem item={item} key={i} />)}
+  </div>
+
+export default memo(SearchResults);

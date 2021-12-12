@@ -1,14 +1,20 @@
-import { useState } from 'react';
 import SearchHeader from './SearchHeader';
 
-const SearchHeaderContainer = () => {
-  const [orgName, setOrgName] = useState('');
-  const [repoName, setRepoName] = useState('');
+type Props = {
+  orgName: string;
+  setOrgName: (orgName: string) => void;
+  repoName: string;
+  setRepoName: (repoName: string) => void;
+  onSearch: () => void;
+};
 
-  const onSearch = () => {
-    console.log({ orgName, repoName });
-  };
-
+const SearchHeaderContainer = ({
+  orgName,
+  setOrgName,
+  repoName,
+  setRepoName,
+  onSearch,
+}: Props) => {
   return (
     <SearchHeader
       orgName={orgName}

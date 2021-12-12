@@ -37,6 +37,7 @@ const SearchHeader = ({
         <button
           className='btn-search'
           onClick={onSearch}
+          disabled={orgName.length === 0 || repoName.length === 0}
         >
           Search for Issues
         </button>
