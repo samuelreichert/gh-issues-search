@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { SingleValue } from 'react-select';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import SearchHeader from './components/SearchHeader';
-import SearchResults from './components/SearchResults';
+import SearchResults, { SortOption } from './components/SearchResults';
 import searchIssues from './api/searchIssues';
 import './App.css';
 
@@ -10,10 +11,17 @@ const queryClient = new QueryClient();
 const AppWithQuery = () => {
   const [orgName, setOrgName] = useState('');
   const [repoName, setRepoName] = useState('');
+  const [sorting, setSorting] = useState<SingleValue<SortOption> | undefined>(undefined);
   const { isFetching, isLoading, isError, data, refetch } = useQuery(
-    ['searchIssues', { orgName, repoName }], searchIssues,
+    ['searchIssues', { orgName, repoName, sorting }], searchIssues,
     { enabled: false }
   );
+
+  useEffect(() => {
+    if (sorting) {
+      refetch();
+    }
+  }, [sorting, refetch]);
 
   const notFoundMessage = data?.message ?? '';
 
@@ -31,11 +39,15 @@ const AppWithQuery = () => {
     onSearch,
   };
 
+  console.log({ data })
   const resultsProps = {
     results: data,
     isLoading: isLoading || isFetching,
     isError,
     notFoundMessage,
+    refetch,
+    setSorting,
+    sorting,
   };
 
   return (

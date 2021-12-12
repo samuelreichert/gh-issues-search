@@ -10,3 +10,14 @@
   padding: 24px 36px;
   width: 960px;
 }
+
+.sort-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+.sort-select {
+  width: 200px;
+}

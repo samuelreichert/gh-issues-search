@@ -20,14 +20,15 @@ const SearchHeader = ({
       <h3 className='search-title'>GitHub Issues Search</h3>
       <div>
         <input
-          type='search'
+          type='text'
+          className='search-input'
           placeholder='Organization Name...'
           value={orgName}
           onChange={(e) => setOrgName(e.currentTarget.value)}
         />
         <span className='input-divider'>/</span>
         <input
-          type='search'
+          type='text'
           placeholder='Repository Name...'
           value={repoName}
           onChange={(e) => setRepoName(e.currentTarget.value)}

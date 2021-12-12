@@ -1,6 +1,7 @@
 import './style.css';
 
 type ResultsItem = {
+  comments: number;
   created_at: string;
   draft: boolean;
   id: number;
@@ -21,6 +22,7 @@ type Props = {
 
 const SearchResultsItem = ({
   item: {
+    comments,
     created_at,
     draft,
     id,
@@ -54,6 +56,8 @@ const SearchResultsItem = ({
           <img className='user-data__img' src={user.avatar_url} alt={`${user.login} avatar`} />
           <span className='user-data__login'>{user.login}</span>
         </a>
+
+        <span className='badge badge--comments'>{comments} comments</span>
 
         <span className='badge badge--date'>Created {formattedCreatedAt}</span>
 

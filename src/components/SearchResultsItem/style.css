@@ -2,7 +2,7 @@
   border-top: 1px solid var(--gray-5);
   display: flex;
   flex-direction: column;
-  padding: 8px 16px;
+  padding: 16px;
   width: 100%;
 }
 .results-item:last-child {
@@ -32,6 +32,9 @@
   justify-content: center;
   margin-right: 16px;
   padding: 4px 8px;
+}
+.badge--comments {
+  background-color: var(--violet-1);
 }
 .badge--date {
   background-color: var(--green-1);
