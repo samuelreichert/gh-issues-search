@@ -1,0 +1,22 @@
+.results-container {
+  background-color: #fff;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 36px;
+  padding: 24px 36px;
+  width: 960px;
+}
+
+.results-item {
+  border-top: 1px solid var(--gray-5);
+  padding: 8px 16px;
+  width: 100%;
+}
+.results-item:last-child {
+  border-bottom: 1px solid var(--gray-5);
+}
+
