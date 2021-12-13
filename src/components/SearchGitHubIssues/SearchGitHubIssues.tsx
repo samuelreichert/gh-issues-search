@@ -9,10 +9,9 @@ type Props = {
   link?: string | null;
   notFoundMessage: string;
   orgName: string;
-  page?: number;
   repoName: string;
   results?: [];
-  sorting?: SingleValue<SortOption>;
+  sorting?: SortOption;
   refetch: () => void;
   setOrgName: (orgName: string) => void;
   setPage: (page: any) => void;
@@ -26,7 +25,6 @@ const SearchGitHubIssues = ({
   link,
   notFoundMessage,
   orgName,
-  page,
   repoName,
   results,
   sorting,
@@ -49,7 +47,6 @@ const SearchGitHubIssues = ({
       isLoading={isLoading}
       link={link}
       notFoundMessage={notFoundMessage}
-      page={page}
       results={results}
       sorting={sorting}
       setPage={setPage}

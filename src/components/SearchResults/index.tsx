@@ -18,21 +18,11 @@ type Props = {
   isLoading: boolean;
   isError: boolean;
   notFoundMessage: string;
-  sorting?: SingleValue<SortOption>;
+  sorting?: SortOption;
   setSorting: (newValue: SingleValue<SortOption>) => void;
   link?: string | null;
-  page?: number;
   setPage: (page: any) => void;
 };
-
-const sortOptions: SortOption[] = [
-  { label: 'Newest', value: '&sort=created&direction=desc' },
-  { label: 'Oldest', value: '&sort=created&direction=asc' },
-  { label: 'Most commented', value: '&sort=comments&direction=desc' },
-  { label: 'Least commented', value: '&sort=comments&direction=asc' },
-  { label: 'Recently updated', value: '&sort=updated&direction=desc' },
-  { label: 'Least recently', value: '&sort=updated&direction:asc' },
-];
 
 const SearchResultsContainer = ({
   results,
@@ -42,7 +32,6 @@ const SearchResultsContainer = ({
   sorting,
   setSorting,
   link,
-  page,
   setPage,
 }: Props) => {
   const [totalPages, setTotalPages] = useState(1);
@@ -80,12 +69,10 @@ const SearchResultsContainer = ({
   return (
     <SearchResults
       results={results}
-      sortOptions={sortOptions}
       onSelectSort={onSelectSort}
       sorting={sorting}
       totalPages={totalPages}
       handlePageClick={handlePageClick}
-      page={page}
     />
   );
 };
