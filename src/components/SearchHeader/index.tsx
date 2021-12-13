@@ -2,19 +2,24 @@ import SearchHeader from './SearchHeader';
 
 type Props = {
   orgName: string;
-  setOrgName: (orgName: string) => void;
   repoName: string;
+  refetch: () => void;
+  setOrgName: (orgName: string) => void;
   setRepoName: (repoName: string) => void;
-  onSearch: () => void;
 };
 
 const SearchHeaderContainer = ({
   orgName,
-  setOrgName,
   repoName,
+  refetch,
+  setOrgName,
   setRepoName,
-  onSearch,
 }: Props) => {
+  const onSearch = () => {
+    if (orgName.length === 0 || repoName.length === 0) return;
+    refetch();
+  };
+
   return (
     <SearchHeader
       orgName={orgName}
@@ -23,7 +28,7 @@ const SearchHeaderContainer = ({
       setRepoName={setRepoName}
       onSearch={onSearch}
     />
-  )
+  );
 };
 
 export default SearchHeaderContainer;

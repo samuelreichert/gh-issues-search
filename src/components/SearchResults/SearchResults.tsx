@@ -6,24 +6,24 @@ import './SearchResults.css';
 import { SortOption, HandlePageClickArgs } from './index';
 
 type Props = {
+  page?: number;
   results?: [];
-  sortOptions: SortOption[];
-  onSelectSort: (newValue: SingleValue<SortOption>) => void;
   sorting?: SingleValue<SortOption>;
+  sortOptions: SortOption[];
   totalPages: number;
   handlePageClick: (click: HandlePageClickArgs) => void;
-  page?: number;
+  onSelectSort: (newValue: SingleValue<SortOption>) => void;
 };
 
 const SearchResults = ({
+  page,
   results = [],
-  sortOptions,
-  onSelectSort,
   sorting,
+  sortOptions,
   totalPages,
   handlePageClick,
-  page,
-}: Props) =>
+  onSelectSort,
+}: Props) => (
   <div className='results-container'>
     <div className='sort-container'>
       <Select
@@ -37,7 +37,7 @@ const SearchResults = ({
       />
     </div>
 
-    {results.map((item, i) => <SearchResultsItem item={item} key={i} />)}
+    {results.map((item, i) => <SearchResultsItem {...item} key={i} />)}
 
     <div className='pagination'>
       <ReactPaginate
@@ -55,5 +55,6 @@ const SearchResults = ({
       />
     </div>
   </div>
+);
 
 export default memo(SearchResults);

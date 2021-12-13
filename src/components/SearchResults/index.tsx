@@ -18,7 +18,6 @@ type Props = {
   isLoading: boolean;
   isError: boolean;
   notFoundMessage: string;
-  refetch: () => void;
   sorting?: SingleValue<SortOption>;
   setSorting: (newValue: SingleValue<SortOption>) => void;
   link?: string | null;
@@ -78,15 +77,17 @@ const SearchResultsContainer = ({
 
   if (!results) return null;
 
-  return <SearchResults
-    results={results}
-    sortOptions={sortOptions}
-    onSelectSort={onSelectSort}
-    sorting={sorting}
-    totalPages={totalPages}
-    handlePageClick={handlePageClick}
-    page={page}
-  />;
+  return (
+    <SearchResults
+      results={results}
+      sortOptions={sortOptions}
+      onSelectSort={onSelectSort}
+      sorting={sorting}
+      totalPages={totalPages}
+      handlePageClick={handlePageClick}
+      page={page}
+    />
+  );
 };
 
 export default SearchResultsContainer;

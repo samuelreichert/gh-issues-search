@@ -1,14 +1,14 @@
 import './style.css';
 
-type ResultsItem = {
+type ResultsItemProps = {
   comments: number;
   created_at: string;
   draft: boolean;
+  html_url: string;
   id: number;
+  pull_request?: {};
   title: string;
   updated_at: string;
-  pull_request?: {};
-  html_url: string;
   user: {
     avatar_url: string;
     html_url: string;
@@ -16,23 +16,17 @@ type ResultsItem = {
   };
 };
 
-type Props = {
-  item: ResultsItem;
-};
-
 const SearchResultsItem = ({
-  item: {
-    comments,
-    created_at,
-    draft,
-    id,
-    title,
-    updated_at,
-    pull_request,
-    html_url,
-    user,
-  }
-}: Props) => {
+  comments,
+  created_at,
+  draft,
+  html_url,
+  id,
+  title,
+  updated_at,
+  pull_request,
+  user,
+}: ResultsItemProps) => {
   const createdAt = new Date(created_at);
   const updatedAt = new Date(updated_at);
   const deltaCreated = (createdAt.getTime() - Date.now()) / (1000*3600*24);
@@ -53,7 +47,12 @@ const SearchResultsItem = ({
 
       <div className='results-item__data'>
         <a href={user.html_url} className='badge user-data'>
-          <img className='user-data__img' src={user.avatar_url} alt={`${user.login} avatar`} />
+          <img
+            className='user-data__img'
+            src={user.avatar_url}
+            alt={`${user.login} avatar`}
+          />
+
           <span className='user-data__login'>{user.login}</span>
         </a>
 
