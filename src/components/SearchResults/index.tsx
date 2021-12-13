@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react';
 import { SingleValue } from 'react-select';
 import SearchResults from './SearchResults';
 import LoadingResults from '../LoadingResults';
 import ErrorResults from '../ErrorResults';
+
+export type HandlePageClickArgs = {
+  selected: number;
+}
 
 export type SortOption = {
   label: string;
@@ -16,6 +21,9 @@ type Props = {
   refetch: () => void;
   sorting?: SingleValue<SortOption>;
   setSorting: (newValue: SingleValue<SortOption>) => void;
+  link?: string | null;
+  page?: number;
+  setPage: (page: any) => void;
 };
 
 const sortOptions: SortOption[] = [
@@ -34,7 +42,28 @@ const SearchResultsContainer = ({
   notFoundMessage,
   sorting,
   setSorting,
+  link,
+  page,
+  setPage,
 }: Props) => {
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    if (link) {
+      const lastLink = link.substring(0, link.indexOf('rel="last"'));
+      const pageQueryParam = '?page=';
+      const start = lastLink.lastIndexOf(pageQueryParam) + pageQueryParam.length;
+      const total = lastLink.substring(start, lastLink.lastIndexOf('&'));
+
+      setTotalPages(parseInt(total))
+    }
+  }, [link, setTotalPages])
+
+
+  const handlePageClick = ({ selected }: HandlePageClickArgs) => {
+    setPage(selected + 1);
+  };
+
   const onSelectSort = (newValue: SingleValue<SortOption>) => {
     setSorting(newValue);
   };
@@ -54,6 +83,9 @@ const SearchResultsContainer = ({
     sortOptions={sortOptions}
     onSelectSort={onSelectSort}
     sorting={sorting}
+    totalPages={totalPages}
+    handlePageClick={handlePageClick}
+    page={page}
   />;
 };
 

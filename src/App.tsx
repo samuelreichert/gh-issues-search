@@ -12,18 +12,22 @@ const AppWithQuery = () => {
   const [orgName, setOrgName] = useState('');
   const [repoName, setRepoName] = useState('');
   const [sorting, setSorting] = useState<SingleValue<SortOption> | undefined>(undefined);
+  const [page, setPage] = useState(undefined);
+
   const { isFetching, isLoading, isError, data, refetch } = useQuery(
-    ['searchIssues', { orgName, repoName, sorting }], searchIssues,
+    ['searchIssues', { orgName, repoName, sorting, page }], searchIssues,
     { enabled: false }
   );
 
   useEffect(() => {
-    if (sorting) {
-      refetch();
-    }
+    if (sorting) refetch();
   }, [sorting, refetch]);
 
-  const notFoundMessage = data?.message ?? '';
+  useEffect(() => {
+    if (page) refetch();
+  }, [page, refetch]);
+
+  const notFoundMessage = data?.data?.message ?? '';
 
   const onSearch = () => {
     if (orgName.length === 0 || repoName.length === 0) return;
@@ -39,15 +43,17 @@ const AppWithQuery = () => {
     onSearch,
   };
 
-  console.log({ data })
   const resultsProps = {
-    results: data,
+    results: data?.data,
     isLoading: isLoading || isFetching,
     isError,
     notFoundMessage,
     refetch,
     setSorting,
     sorting,
+    link: data?.link,
+    page,
+    setPage,
   };
 
   return (
