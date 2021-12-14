@@ -3,7 +3,6 @@ import Pagination from '../Pagination';
 import SearchResultsItem from '../SearchResultsItem';
 import SortResults from '../SortResults';
 import LoadingResults from '../LoadingResults';
-
 import { SearchResultsProps } from '../../config/types';
 import './SearchResults.css';
 

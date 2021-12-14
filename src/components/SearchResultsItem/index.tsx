@@ -24,22 +24,24 @@ const SearchResultsItem = ({
   return (
     <div className='results-item'>
       <a href={html_url}>
-        <p className='results-item__title'>
+        <p className='results-item__title' data-testid="result-item-title">
           {title}
           <small> (#{id})</small>
         </p>
       </a>
 
       <div className='results-item__data'>
-        <a href={user.html_url} className='badge user-data'>
-          <img
-            className='user-data__img'
-            src={user.avatar_url}
-            alt={`${user.login} avatar`}
-          />
+        {user &&
+          <a href={user.html_url} className='badge user-data'>
+            <img
+              className='user-data__img'
+              src={user.avatar_url}
+              alt={`${user.login} avatar`}
+            />
 
-          <span className='user-data__login'>{user.login}</span>
-        </a>
+            <span className='user-data__login'>{user.login}</span>
+          </a>
+        }
 
         <span className='badge badge--comments'>{comments} comments</span>
 

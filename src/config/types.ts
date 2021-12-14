@@ -12,13 +12,13 @@ export type PaginationProps = {
 export type ResultsItemProps = {
   comments: number;
   created_at: string;
-  draft: boolean;
+  draft?: boolean;
   html_url: string;
   id: number;
   pull_request?: {};
   title: string;
   updated_at: string;
-  user: {
+  user?: {
     avatar_url: string;
     html_url: string;
     login: string;
@@ -74,7 +74,7 @@ export type SearchResultsContainerProps = {
 
 export type SearchResultsProps = {
   isLoading: boolean;
-  results?: [];
+  results?: ResultsItemProps[];
   sorting?: Sorting;
   totalPages: number;
   handlePageClick: (click: HandlePageClickArgs) => void;
