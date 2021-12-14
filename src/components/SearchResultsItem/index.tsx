@@ -1,20 +1,5 @@
+import { ResultsItemProps } from '../../config/types';
 import './style.css';
-
-type ResultsItemProps = {
-  comments: number;
-  created_at: string;
-  draft: boolean;
-  html_url: string;
-  id: number;
-  pull_request?: {};
-  title: string;
-  updated_at: string;
-  user: {
-    avatar_url: string;
-    html_url: string;
-    login: string;
-  };
-};
 
 const SearchResultsItem = ({
   comments,

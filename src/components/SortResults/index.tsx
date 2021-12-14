@@ -1,11 +1,6 @@
-import { SingleValue } from 'react-select';
-import { SortOption } from '../SearchResults';
 import SortResults from './SortResults';
+import { SortOption, SortResultsContainerProps } from '../../config/types';
 
-type Props = {
-  sorting?: SortOption;
-  onSelectSort: (newValue: SingleValue<SortOption>) => void;
-};
 
 const sortOptions: SortOption[] = [
   { label: 'Newest', value: '&sort=created&direction=desc' },
@@ -16,7 +11,10 @@ const sortOptions: SortOption[] = [
   { label: 'Least recently', value: '&sort=updated&direction:asc' },
 ];
 
-const SortResultsContainer = ({ sorting, onSelectSort }: Props) => (
+const SortResultsContainer = ({
+  sorting,
+  onSelectSort,
+}: SortResultsContainerProps) => (
   <SortResults
     defaultSort={sorting ?? sortOptions[0]}
     sortOptions={sortOptions}

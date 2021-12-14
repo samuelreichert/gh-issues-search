@@ -1,14 +1,9 @@
 import { memo } from 'react';
 import ReactPaginate from 'react-paginate';
-import { HandlePageClickArgs } from '../SearchResults';
+import { PaginationProps } from '../../config/types';
 import './style.css';
 
-type Props = {
-  totalPages: number;
-  handlePageClick: (click: HandlePageClickArgs) => void;
-};
-
-const Pagination = ({ totalPages, handlePageClick }: Props) => (
+const Pagination = ({ totalPages, handlePageClick }: PaginationProps) => (
   <div className='pagination'>
     <ReactPaginate
       pageRangeDisplayed={3}

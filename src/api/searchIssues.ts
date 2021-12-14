@@ -1,17 +1,11 @@
-type Props = {
-  orgName: string;
-  repoName: string;
-  page?: number;
-  sorting?: { value: string };
-};
-
-const searchIssues = ({ queryKey }: any) => {
+const searchIssues = ({ queryKey }: { queryKey: any }) => {
+  const [,queryParams] = queryKey;
   const {
     orgName,
-    repoName,
     page = 1,
+    repoName,
     sorting,
-  }: Props = queryKey[1];
+  } = queryParams;
 
   const value = sorting?.value ?? '';
 

@@ -1,23 +1,7 @@
-import { SingleValue } from 'react-select';
 import SearchHeader from '../SearchHeader';
-import SearchResults, {SortOption} from '../SearchResults';
+import SearchResults from '../SearchResults';
+import { SearchGitHubIssuesProps } from '../../config/types';
 import './SearchGitHubIssues.css';
-
-type Props = {
-  isError: boolean;
-  isLoading: boolean;
-  link?: string | null;
-  notFoundMessage: string;
-  orgName: string;
-  repoName: string;
-  results?: [];
-  sorting?: SortOption;
-  refetch: () => void;
-  setOrgName: (orgName: string) => void;
-  setPage: (page: any) => void;
-  setRepoName: (repoName: string) => void;
-  setSorting: (newValue: SingleValue<SortOption>) => void;
-};
 
 const SearchGitHubIssues = ({
   isError,
@@ -27,13 +11,15 @@ const SearchGitHubIssues = ({
   orgName,
   repoName,
   results,
+  searched,
   sorting,
   refetch,
   setOrgName,
   setPage,
   setRepoName,
+  setSearched,
   setSorting,
-}: Props) => (
+}: SearchGitHubIssuesProps) => (
   <div className='app'>
     <SearchHeader
       orgName={orgName}
@@ -41,6 +27,7 @@ const SearchGitHubIssues = ({
       refetch={refetch}
       setOrgName={setOrgName}
       setRepoName={setRepoName}
+      setSearched={setSearched}
     />
     <SearchResults
       isError={isError}
@@ -48,6 +35,7 @@ const SearchGitHubIssues = ({
       link={link}
       notFoundMessage={notFoundMessage}
       results={results}
+      searched={searched}
       sorting={sorting}
       setPage={setPage}
       setSorting={setSorting}

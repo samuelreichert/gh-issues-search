@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { SortOption } from '../SearchResults';
 import searchIssues from '../../api/searchIssues';
+import { Sorting } from '../../config/types';
 import SearchGitHubIssues from './SearchGitHubIssues';
 
 const SearchGitHubIssuesContainer = () => {
+  const [searched, setSearched] = useState(false);
   const [orgName, setOrgName] = useState('');
   const [repoName, setRepoName] = useState('');
-  const [sorting, setSorting] = useState<SortOption | undefined>(undefined);
-  const [page, setPage] = useState(undefined);
+  const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
+  const [page, setPage] = useState<number | undefined>(undefined);
   const { isFetching, isLoading, isError, data, refetch } = useQuery(
-    ['searchIssues',
-    { orgName, repoName, sorting, page }],
+    ['searchIssues', { orgName, repoName, sorting, page }],
     searchIssues,
     { enabled: false }
   );
@@ -38,6 +38,8 @@ const SearchGitHubIssuesContainer = () => {
     setPage,
     setRepoName,
     setSorting,
+    searched,
+    setSearched,
   };
 
   return <SearchGitHubIssues {...searchGhIssuesProps} />;

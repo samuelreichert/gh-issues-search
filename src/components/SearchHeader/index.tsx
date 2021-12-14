@@ -1,12 +1,5 @@
 import SearchHeader from './SearchHeader';
-
-type Props = {
-  orgName: string;
-  repoName: string;
-  refetch: () => void;
-  setOrgName: (orgName: string) => void;
-  setRepoName: (repoName: string) => void;
-};
+import { SearchHeaderContainerProps } from '../../config/types';
 
 const SearchHeaderContainer = ({
   orgName,
@@ -14,9 +7,11 @@ const SearchHeaderContainer = ({
   refetch,
   setOrgName,
   setRepoName,
-}: Props) => {
+  setSearched,
+}: SearchHeaderContainerProps) => {
   const onSearch = () => {
     if (orgName.length === 0 || repoName.length === 0) return;
+    setSearched(true);
     refetch();
   };
 

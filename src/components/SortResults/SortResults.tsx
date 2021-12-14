@@ -1,18 +1,12 @@
-import Select, { SingleValue } from 'react-select';
-import { SortOption } from '../SearchResults';
+import Select from 'react-select';
+import { SortResultsProps } from '../../config/types';
 import './SortResults.css';
-
-type Props = {
-  defaultSort: SortOption;
-  sortOptions: SortOption[];
-  onSelectSort: (newValue: SingleValue<SortOption>) => void;
-};
 
 const SortResults = ({
   defaultSort,
   sortOptions,
   onSelectSort,
-}: Props) => (
+}: SortResultsProps) => (
   <div className='sort-container'>
     <Select
       className='sort-select'

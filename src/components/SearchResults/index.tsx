@@ -1,39 +1,23 @@
 import { useEffect, useState } from 'react';
-import { SingleValue } from 'react-select';
 import SearchResults from './SearchResults';
-import LoadingResults from '../LoadingResults';
 import ErrorResults from '../ErrorResults';
-
-export type HandlePageClickArgs = {
-  selected: number;
-}
-
-export type SortOption = {
-  label: string;
-  value: string;
-};
-
-type Props = {
-  results?: [];
-  isLoading: boolean;
-  isError: boolean;
-  notFoundMessage: string;
-  sorting?: SortOption;
-  setSorting: (newValue: SingleValue<SortOption>) => void;
-  link?: string | null;
-  setPage: (page: any) => void;
-};
+import {
+  HandlePageClickArgs,
+  SearchResultsContainerProps,
+  Sorting
+} from '../../config/types';
 
 const SearchResultsContainer = ({
-  results,
-  isLoading,
   isError,
+  isLoading,
   notFoundMessage,
-  sorting,
-  setSorting,
   link,
+  results,
+  searched,
+  sorting,
   setPage,
-}: Props) => {
+  setSorting,
+}: SearchResultsContainerProps) => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
@@ -52,19 +36,16 @@ const SearchResultsContainer = ({
     setPage(selected + 1);
   };
 
-  const onSelectSort = (newValue: SingleValue<SortOption>) => {
+  const onSelectSort = (newValue: Sorting) => {
     setSorting(newValue);
+    setPage(1);
   };
-
-  if (isLoading) {
-    return <LoadingResults />;
-  }
 
   if (isError || notFoundMessage === 'Not Found') {
     return <ErrorResults />;
   }
 
-  if (!results) return null;
+  if (!searched) return null;
 
   return (
     <SearchResults
@@ -73,6 +54,7 @@ const SearchResultsContainer = ({
       sorting={sorting}
       totalPages={totalPages}
       handlePageClick={handlePageClick}
+      isLoading={isLoading}
     />
   );
 };

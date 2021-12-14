@@ -1,12 +1,5 @@
+import { SearchHeaderProps } from '../../config/types';
 import './SearchHeader.css';
-
-type Props = {
-  orgName: string;
-  repoName: string;
-  onSearch: () => void;
-  setOrgName: (orgName: string) => void;
-  setRepoName: (repoName: string) => void;
-}
 
 const SearchHeader = ({
   orgName,
@@ -14,7 +7,7 @@ const SearchHeader = ({
   onSearch,
   setOrgName,
   setRepoName,
-}: Props) => (
+}: SearchHeaderProps) => (
   <div className='search-container'>
     <h3 className='search-title'>GitHub Issues Search</h3>
     <div>
