@@ -1,10 +1,60 @@
-# Getting Started with Create React App
+<div align="center">
+  <h1>GitHub Issues Search</h1>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How to use
 
-## Available Scripts
+- Type the organization/owner name on the first field.
+- Type the repository name on the second field.
+- Click on 'Search for issues' button.
+- See the issues available for the given org/repo.
+- Sort the issues by using the dropdown on the right.
+- Paginate through the results using the links on the bottom.
+- You can check when an issue is a Pull Request by the blue badge present on the issue.
 
-In the project directory, you can run:
+
+## Functional requirements
+
+- User should be able to input GitHub organization and repository and fetch issues from it
+- Pagination is used to navigate between pages
+- User should be able to sort issues
+
+
+## Technical requirements
+
+- State and view of the app are separated
+- Static types
+- Code of the app adheres to the best industry practices
+- App is well tested
+- Minimum required documentation is provided
+- Source code is presented on GitHub
+
+
+## Insights
+
+### GitHub Rest API
+
+Sorting issues:
+`sort` options: 'created', 'updated', 'comments'
+`direction` options: 'asc', 'desc'
+
+Then to sort just like the dropdown on github website:
+- Newest: sort:created, direction:desc
+- Oldest: sort:created, direction:asc
+- Most commented: sort:comments, direction:desc
+- Least commented: sort:comments, direction:asc
+- Recently updated: sort:updated, direction:desc
+- Least recently updated: sort:updated, direction:asc
+
+### Pagination
+
+- Default number of items: 25
+- Get the number of pages from `headers.get('link')`
+
+
+## Setup
+
+Clone this repository and then install the dependencies with `npm install`.
 
 ### `npm start`
 
@@ -19,28 +69,7 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Libs
+- react-paginate
+- react-query
+- react-select
